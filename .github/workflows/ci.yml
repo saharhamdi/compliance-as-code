@@ -1,0 +1,131 @@
+name: CI
+
+# Déclencheurs : à chaque push et pull request vers main, et manuellement
+# depuis l'onglet Actions (workflow_dispatch).
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Limite les permissions du token GITHUB_TOKEN au strict nécessaire
+# (bonne pratique de sécurité : principe du moindre privilège).
+permissions:
+  contents: read
+
+# Annule automatiquement les exécutions précédentes encore en cours pour la
+# même branche/PR quand un nouveau push arrive, pour ne pas gaspiller de
+# minutes CI.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Analyse statique (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installation de ruff
+        run: pip install ruff
+
+      - name: Lint (erreurs bloquantes uniquement)
+        run: ruff check . --select=E9,F --output-format=github
+
+      - name: Lint (style, informatif, non bloquant)
+        run: ruff check . --exit-zero
+
+  validate-referentiels:
+    name: Validation des référentiels YAML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installation des dépendances
+        run: pip install -r requirements.txt
+
+      - name: Validation des référentiels
+        run: python scripts/valider_referentiels.py
+
+  test:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    needs: [lint, validate-referentiels]
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Installation des dépendances
+        run: pip install -r requirements.txt
+
+      - name: Exécution des tests unitaires
+        run: python tests/test_scoring.py
+
+  demo-reports:
+    name: Génération des rapports de démonstration
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Installation des dépendances
+        run: pip install -r requirements.txt
+
+      - name: Génération du rapport NIS2 de démonstration
+        run: |
+          python cli.py \
+            --referentiel referentiels/nis2.yaml \
+            --reponses exemples/reponses_exemple_nis2.csv \
+            --organisation "PME Exemple SARL" \
+            --nom-referentiel "NIS2 (sous-ensemble)" \
+            --out rapports/demo_nis2.xlsx
+
+      - name: Génération du rapport ISO 27001 de démonstration
+        run: |
+          python cli.py \
+            --referentiel referentiels/iso27001_annexe_a.yaml \
+            --reponses exemples/reponses_exemple_iso27001.csv \
+            --organisation "PME Exemple SARL" \
+            --nom-referentiel "ISO/IEC 27001:2022 — Annexe A (sous-ensemble)" \
+            --out rapports/demo_iso27001.xlsx
+
+      # Publie les deux rapports comme artefacts téléchargeables depuis
+      # l'onglet Actions de GitHub — preuve que le CLI fonctionne de bout
+      # en bout, consultable sans rien installer.
+      - name: Publication des rapports en artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapports-demo
+          path: rapports/*.xlsx
+          retention-days: 30
