@@ -1,63 +1,66 @@
-# Compliance-as-Code — Audit de conformité ISO 27001 / NIS2 automatisé
+# Compliance-as-Code — Automated ISO 27001 / NIS2 Compliance Audit
 
-Un outil en Python qui transforme un référentiel de conformité (ISO 27001,
-NIS2...) en **audit exploitable** : il croise les contrôles du référentiel
-avec les réponses d'un audit, calcule les taux de conformité, et génère un
-**rapport Excel professionnel** (synthèse graphique, détail des contrôles,
-plan d'action priorisé par criticité).
+[![CI](https://github.com/saharhamdi/compliance-as-code/actions/workflows/ci.yml/badge.svg)](https://github.com/saharhamdi/compliance-as-code/actions/workflows/ci.yml)
 
-> Projet compagnon du **Guide pratique NIS2 pour PME** : là où le guide
-> explique *quoi* faire, cet outil aide à *mesurer où on en est* et à
-> prioriser les actions restantes.
+A Python tool that turns a compliance framework (ISO 27001, NIS2...) into an
+**actionable audit**: it matches the framework's controls against audit
+responses, computes compliance rates, and generates a **professional Excel
+report** (graphical summary, control-by-control detail, criticality-based
+action plan).
 
-![Aperçu de la synthèse du rapport](docs/images/synthese_apercu.png)
+> Companion project to the **NIS2 Practical Guide for SMEs**: where the
+> guide explains *what* to do, this tool helps *measure where you stand*
+> and prioritize the remaining actions.
 
-## Pourquoi ce projet
+![Report summary preview](docs/images/synthese_apercu.png)
 
-Les PME et institutions qui doivent se conformer à NIS2 ou ISO 27001 n'ont
-souvent ni RSSI interne, ni budget pour un audit coûteux. La plupart des
-checklists de conformité existent en PDF ou en tableur statique : utiles
-pour lire, inutiles pour **suivre dans le temps** ou produire un rapport
-présentable à une direction.
+## Why this project
 
-Ce projet répond à un besoin concret : un référentiel **réutilisable et
-versionnable** (YAML), un audit **reproductible** (le même script donne
-toujours le même rapport pour les mêmes réponses), et une sortie **prête à
-être partagée** (Excel avec graphiques, pas un export brut).
+SMEs and institutions that need to comply with NIS2 or ISO 27001 often have
+neither an in-house CISO nor the budget for a costly audit. Most compliance
+checklists exist as a PDF or a static spreadsheet: fine to read, but useless
+for **tracking progress over time** or producing a report a board can
+actually look at.
 
-## Fonctionnalités
+This project addresses a concrete need: a **reusable, version-controlled**
+framework (YAML), a **reproducible** audit (the same script always produces
+the same report for the same answers), and a **shareable** output (an Excel
+file with charts, not a raw export).
 
-- Référentiels de contrôles en YAML, faciles à étendre ou à adapter à un
-  autre cadre normatif (ANCS, PCI DSS, etc.)
-- Calcul du taux de conformité global et par domaine (un contrôle `partiel`
-  compte pour une demi-conformité)
-- Plan d'action automatiquement **priorisé par criticité**, avec la preuve
-  attendue et une action recommandée pour chaque écart
-- Rapport Excel à 3 onglets : **Synthèse** (graphiques), **Détail des
-  contrôles** (code couleur par statut), **Plan d'action**
-- Gestion explicite du `non_applicable` (exclu du calcul du taux)
-- Un contrôle du référentiel sans réponse d'audit n'est jamais ignoré : il
-  apparaît en `non_conforme` avec un commentaire à compléter — aucun écart
-  ne peut passer sous le radar
+## Features
+
+- Control frameworks defined in YAML, easy to extend or adapt to another
+  regulatory framework (ANCS, PCI DSS, etc.)
+- Global and per-domain compliance rate calculation (a `partial` control
+  counts as half-compliant)
+- Action plan automatically **prioritized by criticality**, with the
+  expected evidence and a recommended action for each gap
+- 3-tab Excel report: **Summary** (charts), **Control Detail**
+  (status-based color coding), **Action Plan**
+- Explicit handling of `not_applicable` controls (excluded from the rate
+  calculation)
+- A framework control with no audit response is never silently skipped: it
+  shows up as `non-compliant` with a comment to fill in — no gap can slip
+  through unnoticed
 
 ## Installation
 
 ```bash
-git clone https://github.com/<votre-compte>/compliance-as-code.git
+git clone https://github.com/<your-account>/compliance-as-code.git
 cd compliance-as-code
 pip install -r requirements.txt
 ```
 
-Nécessite Python 3.9+.
+Requires Python 3.9+.
 
-## Utilisation
+## Usage
 
 ```bash
 python cli.py \
   --referentiel referentiels/nis2.yaml \
   --reponses exemples/reponses_exemple_nis2.csv \
-  --organisation "PME Exemple SARL" \
-  --nom-referentiel "NIS2 (sous-ensemble)" \
+  --organisation "Example SME Ltd" \
+  --nom-referentiel "NIS2 (subset)" \
   --out rapports/rapport_nis2.xlsx
 ```
 
@@ -67,72 +70,78 @@ Taux de conformité global : 50.0 %
 Contrôles en écart (plan d'action) : 11
 ```
 
-Même logique avec le référentiel ISO 27001 fourni :
+Same logic with the provided ISO 27001 framework:
 
 ```bash
 python cli.py \
   --referentiel referentiels/iso27001_annexe_a.yaml \
   --reponses exemples/reponses_exemple_iso27001.csv \
-  --organisation "PME Exemple SARL" \
+  --organisation "Example SME Ltd" \
   --out rapports/rapport_iso27001.xlsx
 ```
+
+> Note: command-line options and console output are in French
+> (`--referentiel`, `--reponses`, `Taux de conformité global`, etc.), since
+> this is the language the tool was built and documented in for its
+> primary (French-speaking) audience. The logic and structure below apply
+> regardless of language.
 
 ### Options
 
 | Option | Description |
 |---|---|
-| `--referentiel` | Fichier YAML du référentiel (obligatoire) |
-| `--reponses` | Fichier CSV des réponses d'audit (obligatoire) |
-| `--out` | Chemin du rapport Excel à générer |
-| `--organisation` | Nom affiché dans l'en-tête du rapport |
-| `--nom-referentiel` | Nom du référentiel affiché (défaut : nom du fichier) |
+| `--referentiel` | Path to the framework YAML file (required) |
+| `--reponses` | Path to the audit responses CSV file (required) |
+| `--out` | Path of the Excel report to generate |
+| `--organisation` | Organization name shown in the report header |
+| `--nom-referentiel` | Framework name shown in the report (default: file name) |
 
-## Format du référentiel (YAML)
+## Framework format (YAML)
 
 ```yaml
 - id: "NIS2-1.1"
-  domaine: "1. Analyse des risques et politique de sécurité"
-  controle: "Politique de sécurité des systèmes d'information"
+  domaine: "1. Risk analysis and security policy"
+  controle: "Information system security policy"
   description: "..."
-  preuve_attendue: "Document de politique SSI signé et daté"
-  criticite: "Élevée"           # Élevée | Moyenne | Faible
+  preuve_attendue: "Signed and dated security policy document"
+  criticite: "Élevée"           # Élevée (High) | Moyenne (Medium) | Faible (Low)
   action_recommandee: "..."
-  reference: "Directive (UE) 2022/2555, art. 21(2)(a)"
+  reference: "Directive (EU) 2022/2555, art. 21(2)(a)"
 ```
 
-## Format des réponses d'audit (CSV)
+## Audit responses format (CSV)
 
 ```csv
 control_id,statut,preuve_fournie,commentaire
-NIS2-1.1,conforme,oui,Politique SSI v2 approuvée par la direction en mars 2026
-NIS2-2.2,non_conforme,non,Aucun processus de notification réglementaire formalisé
+NIS2-1.1,conforme,oui,Security policy v2 approved by management in March 2026
+NIS2-2.2,non_conforme,non,No formal regulatory notification process in place
 ```
 
-Statuts acceptés : `conforme`, `non_conforme`, `partiel`, `non_applicable`.
+Accepted statuses: `conforme` (compliant), `non_conforme` (non-compliant),
+`partiel` (partial), `non_applicable` (not applicable).
 
-## Architecture du projet
+## Project structure
 
 ```
 compliance-as-code/
-├── referentiels/              # Référentiels de contrôles (YAML)
+├── referentiels/               # Control frameworks (YAML)
 │   ├── nis2.yaml
 │   └── iso27001_annexe_a.yaml
-├── compliance_tool/            # Package Python
-│   ├── models.py               # Structures de données (Control, Finding...)
-│   ├── loader.py                # Chargement YAML/CSV
-│   ├── scoring.py               # Calcul des taux et du plan d'action
-│   └── report_excel.py          # Génération du rapport Excel
-├── exemples/                   # Réponses d'audit factices, pour la démo
-├── rapports/                   # Rapports générés (ignorés par git)
-├── tests/                      # Tests unitaires du moteur de scoring
-└── cli.py                      # Point d'entrée en ligne de commande
+├── compliance_tool/             # Python package
+│   ├── models.py                 # Data structures (Control, Finding...)
+│   ├── loader.py                 # YAML/CSV loading
+│   ├── scoring.py                 # Rate and action-plan computation
+│   └── report_excel.py            # Excel report generation
+├── exemples/                    # Sample (fictional) audit responses
+├── rapports/                    # Generated reports (git-ignored)
+├── tests/                       # Unit tests for the scoring engine
+└── cli.py                       # Command-line entry point
 ```
 
-## Étendre à un autre référentiel
+## Extending to another framework
 
-Ajouter un nouveau cadre normatif (PCI DSS, ANCS...) se résume à créer un
-nouveau fichier YAML suivant le même schéma — aucune modification du code
-n'est nécessaire.
+Adding a new regulatory framework (PCI DSS, ANCS...) is just a matter of
+creating a new YAML file following the same schema — no code change needed.
 
 ## Tests
 
@@ -140,27 +149,26 @@ n'est nécessaire.
 python tests/test_scoring.py
 ```
 
-## Limites et avertissement
+## Limitations and disclaimer
 
-- Les référentiels fournis (`referentiels/`) sont des **sous-ensembles
-  pédagogiques**, reformulés librement à partir des textes publics de la
-  directive NIS2 et de la structure de l'Annexe A d'ISO/IEC 27001:2022.
-  Ils ne remplacent pas le texte officiel de la norme (ISO 27001 est
-  protégée par le droit d'auteur ISO) ni un audit mené par un professionnel
-  qualifié.
-- Les fichiers d'exemple dans `exemples/` contiennent des données
-  **entièrement fictives**, pour la démonstration.
-- Cet outil mesure un état déclaratif (ce que l'auditeur a constaté et
-  consigné) — il ne remplace pas la collecte de preuves elle-même.
+- The frameworks provided (`referentiels/`) are **educational subsets**,
+  freely rephrased from the public text of the NIS2 directive and the
+  structure of ISO/IEC 27001:2022 Annex A. They do not replace the
+  official standard text (ISO 27001 is copyrighted by ISO) nor an audit
+  carried out by a qualified professional.
+- The sample files in `exemples/` contain **entirely fictional** data, for
+  demonstration purposes only.
+- This tool measures a declarative state (what the auditor observed and
+  recorded) — it does not replace the actual collection of evidence.
 
-## À propos
+## About
 
-Projet réalisé par **Sahar Hamdi**, Ingénieure Cybersécurité / RSSI,
-spécialisée en GRC, audit de conformité (ISO 27001, NIS2) et IAM/PAM.
+Project built by **Sahar Hamdi**, Cybersecurity Engineer / CISO,
+specialized in GRC, compliance auditing (ISO 27001, NIS2), and IAM/PAM.
 
-- LinkedIn : *(lien à compléter)*
-- Autres projets portfolio : [Risk Management Lab](#), [Secure IaC Lab](#)
+- LinkedIn: *(link to be added)*
+- Other portfolio projects: [Risk Management Lab](#), [Secure IaC Lab](#)
 
-## Licence
+## License
 
-MIT — voir [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
