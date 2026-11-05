@@ -1,0 +1,18 @@
+control_id,statut,preuve_fournie,commentaire
+NIS2-1.1,conforme,oui,Politique SSI v2 approuvée par la direction en mars 2026
+NIS2-1.2,partiel,oui,Registre des risques existant mais pas de revue annuelle formalisée
+NIS2-2.1,conforme,oui,Procédure de gestion des incidents en place depuis 2025
+NIS2-2.2,non_conforme,non,Aucun processus de notification réglementaire formalisé
+NIS2-3.1,partiel,oui,PRA existant mais jamais testé
+NIS2-3.2,non_conforme,non,Pas de cellule de crise désignée
+NIS2-4.1,non_conforme,non,Fournisseurs critiques non évalués sur le plan sécurité
+NIS2-4.2,partiel,oui,Clauses de confidentialité présentes mais pas de clause d'audit
+NIS2-5.1,conforme,oui,Scan de vulnérabilités mensuel avec suivi des correctifs
+NIS2-5.2,non_applicable,non,Pas de développement interne dans le périmètre audité
+NIS2-6.1,non_conforme,non,Aucun tableau de bord KPI sécurité
+NIS2-7.1,partiel,oui,Formation dispensée à l'embauche uniquement
+NIS2-8.1,conforme,oui,Politique cryptographique documentée et appliquée
+NIS2-9.1,partiel,oui,Revue des droits réalisée une fois mais non périodique
+NIS2-9.2,conforme,oui,Inventaire des actifs tenu à jour dans la CMDB
+NIS2-10.1,partiel,oui,MFA déployé sur les comptes admin mais pas sur les accès distants
+NIS2-10.2,non_conforme,non,Pas de canal de communication de secours identifié

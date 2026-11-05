@@ -1,0 +1,196 @@
+# Référentiel NIS2 — sous-ensemble des mesures de gestion des risques
+# cybersécurité listées à l'article 21(2) de la directive (UE) 2022/2555.
+#
+# Ce fichier est une sélection pédagogique (17 mesures) et une reformulation
+# libre des dix catégories de l'article 21(2), PAS une reproduction officielle
+# du texte juridique. Pour un audit réel, vérifiez toujours le texte complet
+# de la directive et sa transposition nationale.
+#
+# criticite : Élevée | Moyenne | Faible
+
+- id: "NIS2-1.1"
+  domaine: "1. Analyse des risques et politique de sécurité"
+  controle: "Politique de sécurité des systèmes d'information"
+  description: >
+    Une politique d'analyse des risques et de sécurité des systèmes
+    d'information est formalisée, approuvée par la direction et diffusée.
+  preuve_attendue: "Document de politique SSI signé et daté, preuve de diffusion interne"
+  criticite: "Élevée"
+  action_recommandee: "Rédiger et faire approuver une politique SSI formelle par la direction"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(a)"
+
+- id: "NIS2-1.2"
+  domaine: "1. Analyse des risques et politique de sécurité"
+  controle: "Analyse de risques périodique"
+  description: >
+    Une analyse des risques cyber couvrant les actifs critiques est réalisée
+    au moins une fois par an et mise à jour après tout changement majeur.
+  preuve_attendue: "Registre des risques daté, compte-rendu de revue annuelle"
+  criticite: "Élevée"
+  action_recommandee: "Mettre en place un registre des risques et une revue annuelle planifiée"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(a)"
+
+- id: "NIS2-2.1"
+  domaine: "2. Gestion des incidents"
+  controle: "Procédure de gestion des incidents"
+  description: >
+    Une procédure documentée décrit la détection, la qualification,
+    l'escalade et le traitement des incidents de sécurité.
+  preuve_attendue: "Procédure de gestion des incidents, registre des incidents traités"
+  criticite: "Élevée"
+  action_recommandee: "Formaliser une procédure de gestion des incidents avec rôles et délais"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(b)"
+
+- id: "NIS2-2.2"
+  domaine: "2. Gestion des incidents"
+  controle: "Notification des incidents significatifs"
+  description: >
+    Un processus permet d'identifier un incident significatif et de le
+    notifier à l'autorité compétente dans les délais réglementaires.
+  preuve_attendue: "Procédure de notification, modèle de déclaration, preuve de test"
+  criticite: "Élevée"
+  action_recommandee: "Définir les seuils de significativité et le circuit de notification"
+  reference: "Directive (UE) 2022/2555, art. 23"
+
+- id: "NIS2-3.1"
+  domaine: "3. Continuité d'activité"
+  controle: "Plan de continuité d'activité (PCA)"
+  description: >
+    Un plan de continuité d'activité couvre les processus critiques, avec
+    une gestion de sauvegarde et un plan de reprise après sinistre.
+  preuve_attendue: "Document PCA/PRA, compte-rendu de test de restauration"
+  criticite: "Élevée"
+  action_recommandee: "Élaborer un PCA/PRA et planifier un test annuel de restauration"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(c)"
+
+- id: "NIS2-3.2"
+  domaine: "3. Continuité d'activité"
+  controle: "Gestion de crise"
+  description: >
+    Une organisation de gestion de crise cyber est définie (rôles,
+    chaîne d'alerte, cellule de crise).
+  preuve_attendue: "Procédure de gestion de crise, liste des contacts d'astreinte"
+  criticite: "Moyenne"
+  action_recommandee: "Désigner une cellule de crise et documenter la procédure d'activation"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(c)"
+
+- id: "NIS2-4.1"
+  domaine: "4. Sécurité de la chaîne d'approvisionnement"
+  controle: "Évaluation sécurité des fournisseurs"
+  description: >
+    Les fournisseurs et prestataires ayant accès au système d'information
+    sont identifiés et évalués sur le plan de la sécurité.
+  preuve_attendue: "Registre des fournisseurs critiques, questionnaires ou audits fournisseurs"
+  criticite: "Moyenne"
+  action_recommandee: "Mettre en place un processus d'évaluation sécurité à l'entrée en relation"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(d)"
+
+- id: "NIS2-4.2"
+  domaine: "4. Sécurité de la chaîne d'approvisionnement"
+  controle: "Clauses de sécurité contractuelles"
+  description: >
+    Les contrats avec les prestataires critiques incluent des clauses de
+    sécurité (confidentialité, notification d'incident, droit d'audit).
+  preuve_attendue: "Modèle de clauses, contrats signés incluant ces clauses"
+  criticite: "Moyenne"
+  action_recommandee: "Intégrer des clauses de sécurité types dans les nouveaux contrats"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(d)"
+
+- id: "NIS2-5.1"
+  domaine: "5. Sécurité dans le cycle de vie des systèmes"
+  controle: "Gestion des vulnérabilités"
+  description: >
+    Un processus récurrent de détection, d'évaluation et de correction des
+    vulnérabilités techniques est en place, avec des délais selon la criticité.
+  preuve_attendue: "Rapports de scan de vulnérabilités, registre de suivi des correctifs"
+  criticite: "Élevée"
+  action_recommandee: "Mettre en place un scan périodique et un SLA de correction par criticité"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(e)"
+
+- id: "NIS2-5.2"
+  domaine: "5. Sécurité dans le cycle de vie des systèmes"
+  controle: "Sécurité du développement et des acquisitions"
+  description: >
+    Les nouveaux systèmes et développements intègrent des exigences de
+    sécurité dès la conception (tests de sécurité avant mise en production).
+  preuve_attendue: "Procédure de recette sécurité, rapports de tests avant mise en production"
+  criticite: "Moyenne"
+  action_recommandee: "Ajouter une étape de validation sécurité dans le cycle de développement"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(e)"
+
+- id: "NIS2-6.1"
+  domaine: "6. Mesure de l'efficacité"
+  controle: "Indicateurs et revue de l'efficacité des mesures"
+  description: >
+    Des indicateurs de sécurité (KPI) sont suivis et une revue périodique de
+    l'efficacité des mesures de gestion des risques est réalisée.
+  preuve_attendue: "Tableau de bord KPI, compte-rendu de revue de direction"
+  criticite: "Faible"
+  action_recommandee: "Définir un jeu de KPI et une fréquence de revue formelle"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(f)"
+
+- id: "NIS2-7.1"
+  domaine: "7. Cyber-hygiène et formation"
+  controle: "Programme de sensibilisation"
+  description: >
+    Un programme de sensibilisation et de formation à la cybersécurité est
+    dispensé régulièrement à l'ensemble du personnel.
+  preuve_attendue: "Support de formation, liste d'émargement, taux de participation"
+  criticite: "Moyenne"
+  action_recommandee: "Planifier une session de sensibilisation annuelle pour tout le personnel"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(g)"
+
+- id: "NIS2-8.1"
+  domaine: "8. Cryptographie"
+  controle: "Politique d'utilisation de la cryptographie"
+  description: >
+    Une politique définit les algorithmes et protocoles cryptographiques
+    autorisés pour protéger les données sensibles, au repos et en transit.
+  preuve_attendue: "Politique cryptographique, résultats de scan de configuration TLS"
+  criticite: "Moyenne"
+  action_recommandee: "Formaliser une politique cryptographique et vérifier son application"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(h)"
+
+- id: "NIS2-9.1"
+  domaine: "9. Sécurité des ressources humaines et contrôle d'accès"
+  controle: "Gestion des droits d'accès"
+  description: >
+    Les droits d'accès sont attribués selon le principe du moindre privilège
+    et revus périodiquement, avec une procédure de départ/mutation du personnel.
+  preuve_attendue: "Procédure de gestion des accès, preuve de revue périodique des droits"
+  criticite: "Élevée"
+  action_recommandee: "Mettre en place une revue périodique des droits d'accès et une procédure de départ"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(i)"
+
+- id: "NIS2-9.2"
+  domaine: "9. Sécurité des ressources humaines et contrôle d'accès"
+  controle: "Gestion des actifs"
+  description: >
+    Un inventaire à jour des actifs matériels et logiciels critiques est
+    maintenu et chaque actif a un propriétaire désigné.
+  preuve_attendue: "Inventaire des actifs (CMDB ou équivalent), propriétaires désignés"
+  criticite: "Moyenne"
+  action_recommandee: "Mettre en place et maintenir un inventaire des actifs avec propriétaires"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(i)"
+
+- id: "NIS2-10.1"
+  domaine: "10. Authentification et communications sécurisées"
+  controle: "Authentification forte (MFA)"
+  description: >
+    L'authentification multifactorielle est déployée pour les accès
+    distants et les comptes à privilèges.
+  preuve_attendue: "Configuration MFA, taux de couverture des comptes à privilèges"
+  criticite: "Élevée"
+  action_recommandee: "Déployer le MFA en priorité sur les comptes à privilèges et accès distants"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(j)"
+
+- id: "NIS2-10.2"
+  domaine: "10. Authentification et communications sécurisées"
+  controle: "Communications d'urgence sécurisées"
+  description: >
+    Des moyens de communication de secours (hors système d'information
+    principal) sont prévus pour la gestion de crise.
+  preuve_attendue: "Procédure de communication de crise, liste de moyens alternatifs testés"
+  criticite: "Faible"
+  action_recommandee: "Identifier et tester un canal de communication alternatif en cas de crise"
+  reference: "Directive (UE) 2022/2555, art. 21(2)(j)"

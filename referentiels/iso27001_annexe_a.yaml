@@ -1,0 +1,208 @@
+# Référentiel ISO/IEC 27001:2022 — sous-ensemble de l'Annexe A
+#
+# Ce fichier contient une sélection de 18 contrôles représentatifs des 4
+# thèmes de l'Annexe A:2022 (Organisationnels, Personnes, Physiques,
+# Technologiques), reformulés librement à des fins pédagogiques.
+# Ce N'EST PAS une reproduction du texte officiel de la norme (protégé par
+# le droit d'auteur ISO) : pour un audit de certification réel, référez-vous
+# toujours au texte intégral acheté auprès de l'ISO/l'INNORPI.
+#
+# criticite : Élevée | Moyenne | Faible
+
+- id: "A.5.1"
+  domaine: "Organisationnel"
+  controle: "Politiques de sécurité de l'information"
+  description: >
+    Un ensemble de politiques de sécurité de l'information est défini,
+    approuvé par la direction, publié et communiqué.
+  preuve_attendue: "Document de politique SSI signé, preuve de diffusion"
+  criticite: "Élevée"
+  action_recommandee: "Rédiger, faire approuver et diffuser une politique SSI formelle"
+  reference: "ISO/IEC 27001:2022, Annexe A.5.1"
+
+- id: "A.5.7"
+  domaine: "Organisationnel"
+  controle: "Renseignement sur les menaces (Threat Intelligence)"
+  description: >
+    Des informations relatives aux menaces de sécurité sont collectées et
+    analysées pour produire du renseignement exploitable.
+  preuve_attendue: "Sources de veille identifiées, bulletins d'analyse de menaces"
+  criticite: "Faible"
+  action_recommandee: "Mettre en place une veille structurée sur les menaces pertinentes"
+  reference: "ISO/IEC 27001:2022, Annexe A.5.7"
+
+- id: "A.5.9"
+  domaine: "Organisationnel"
+  controle: "Inventaire des actifs informationnels"
+  description: >
+    Un inventaire des informations et autres actifs associés est établi,
+    tenu à jour, avec un propriétaire désigné pour chaque actif.
+  preuve_attendue: "Inventaire des actifs à jour, propriétaires désignés"
+  criticite: "Élevée"
+  action_recommandee: "Mettre en place et maintenir un inventaire exhaustif des actifs"
+  reference: "ISO/IEC 27001:2022, Annexe A.5.9"
+
+- id: "A.5.15"
+  domaine: "Organisationnel"
+  controle: "Contrôle d'accès"
+  description: >
+    Des règles de contrôle d'accès physique et logique sont établies et
+    appliquées en fonction des exigences métier et de sécurité.
+  preuve_attendue: "Politique de contrôle d'accès, matrice des droits"
+  criticite: "Élevée"
+  action_recommandee: "Formaliser une politique de contrôle d'accès basée sur le besoin d'en connaître"
+  reference: "ISO/IEC 27001:2022, Annexe A.5.15"
+
+- id: "A.5.23"
+  domaine: "Organisationnel"
+  controle: "Sécurité pour l'utilisation des services cloud"
+  description: >
+    Les processus d'acquisition, d'utilisation et de sortie des services
+    cloud intègrent des exigences de sécurité définies.
+  preuve_attendue: "Politique d'usage du cloud, clauses contractuelles avec les fournisseurs cloud"
+  criticite: "Moyenne"
+  action_recommandee: "Définir des exigences de sécurité minimales pour tout nouveau service cloud"
+  reference: "ISO/IEC 27001:2022, Annexe A.5.23"
+
+- id: "A.5.30"
+  domaine: "Organisationnel"
+  controle: "Préparation des TIC pour la continuité d'activité"
+  description: >
+    La disponibilité des systèmes d'information est planifiée, mise en
+    œuvre, maintenue et testée en fonction des objectifs de continuité.
+  preuve_attendue: "Plan de continuité informatique, compte-rendu de test"
+  criticite: "Élevée"
+  action_recommandee: "Élaborer et tester un plan de continuité informatique"
+  reference: "ISO/IEC 27001:2022, Annexe A.5.30"
+
+- id: "A.6.3"
+  domaine: "Personnes"
+  controle: "Sensibilisation, formation et entraînement à la sécurité"
+  description: >
+    Le personnel reçoit une sensibilisation et une formation appropriées,
+    régulièrement mises à jour selon les politiques de l'organisation.
+  preuve_attendue: "Supports de formation, liste d'émargement, taux de participation"
+  criticite: "Moyenne"
+  action_recommandee: "Planifier un programme annuel de sensibilisation pour tout le personnel"
+  reference: "ISO/IEC 27001:2022, Annexe A.6.3"
+
+- id: "A.6.5"
+  domaine: "Personnes"
+  controle: "Responsabilités après la fin ou le changement d'emploi"
+  description: >
+    Les responsabilités de sécurité qui restent valables après le départ
+    ou le changement de poste sont définies et communiquées.
+  preuve_attendue: "Procédure de départ, clause de confidentialité post-emploi"
+  criticite: "Moyenne"
+  action_recommandee: "Formaliser une procédure de départ incluant la révocation des accès"
+  reference: "ISO/IEC 27001:2022, Annexe A.6.5"
+
+- id: "A.7.2"
+  domaine: "Physique"
+  controle: "Entrées physiques"
+  description: >
+    Les zones sécurisées sont protégées par des contrôles d'entrée
+    appropriés pour garantir que seul le personnel autorisé y accède.
+  preuve_attendue: "Registre des accès physiques, politique de contrôle des entrées"
+  criticite: "Moyenne"
+  action_recommandee: "Mettre en place un contrôle d'accès physique (badge, registre) aux zones sensibles"
+  reference: "ISO/IEC 27001:2022, Annexe A.7.2"
+
+- id: "A.7.9"
+  domaine: "Physique"
+  controle: "Sécurité des équipements hors des locaux"
+  description: >
+    Les équipements utilisés hors des locaux de l'organisation sont
+    protégés contre les risques liés au travail à distance.
+  preuve_attendue: "Politique de télétravail, charte d'utilisation des équipements nomades"
+  criticite: "Faible"
+  action_recommandee: "Formaliser une charte de sécurité pour le travail à distance"
+  reference: "ISO/IEC 27001:2022, Annexe A.7.9"
+
+- id: "A.8.1"
+  domaine: "Technologique"
+  controle: "Dispositifs utilisateur final"
+  description: >
+    Les informations stockées, traitées ou accessibles via les postes de
+    travail sont protégées par des mesures de sécurité appropriées.
+  preuve_attendue: "Politique de poste de travail, preuve de chiffrement/antivirus déployé"
+  criticite: "Moyenne"
+  action_recommandee: "Déployer une politique de durcissement standard des postes de travail"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.1"
+
+- id: "A.8.5"
+  domaine: "Technologique"
+  controle: "Authentification sécurisée"
+  description: >
+    Des technologies et procédures d'authentification sécurisée sont mises
+    en œuvre en fonction des restrictions d'accès et de la politique associée.
+  preuve_attendue: "Configuration MFA, politique de mots de passe"
+  criticite: "Élevée"
+  action_recommandee: "Déployer le MFA sur les accès à privilèges et distants"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.5"
+
+- id: "A.8.8"
+  domaine: "Technologique"
+  controle: "Gestion des vulnérabilités techniques"
+  description: >
+    Les informations sur les vulnérabilités techniques sont obtenues en
+    temps utile, évaluées et des mesures appropriées sont prises.
+  preuve_attendue: "Rapports de scan de vulnérabilités, registre de suivi des correctifs"
+  criticite: "Élevée"
+  action_recommandee: "Mettre en place un scan périodique et un SLA de correction"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.8"
+
+- id: "A.8.9"
+  domaine: "Technologique"
+  controle: "Gestion de la configuration"
+  description: >
+    Les configurations de sécurité du matériel, des logiciels, des services
+    et des réseaux sont établies, documentées et surveillées.
+  preuve_attendue: "Baseline de configuration sécurisée, rapport d'écarts de configuration"
+  criticite: "Moyenne"
+  action_recommandee: "Définir une configuration de référence (baseline) et en surveiller l'application"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.9"
+
+- id: "A.8.12"
+  domaine: "Technologique"
+  controle: "Prévention de la fuite de données"
+  description: >
+    Des mesures de prévention de la fuite de données sont appliquées aux
+    systèmes, réseaux et autres dispositifs traitant des informations sensibles.
+  preuve_attendue: "Solution DLP déployée, règles de classification des données"
+  criticite: "Moyenne"
+  action_recommandee: "Évaluer et déployer une solution de prévention de la fuite de données"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.12"
+
+- id: "A.8.16"
+  domaine: "Technologique"
+  controle: "Activités de surveillance"
+  description: >
+    Les réseaux, systèmes et applications sont surveillés pour détecter
+    les comportements anormaux et évaluer les incidents potentiels.
+  preuve_attendue: "Règles de détection SIEM, tableau de bord de supervision"
+  criticite: "Élevée"
+  action_recommandee: "Mettre en place une supervision centralisée avec des règles de détection"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.16"
+
+- id: "A.8.24"
+  domaine: "Technologique"
+  controle: "Utilisation de la cryptographie"
+  description: >
+    Des règles d'utilisation efficace de la cryptographie, y compris la
+    gestion des clés, sont définies et mises en œuvre.
+  preuve_attendue: "Politique cryptographique, inventaire et rotation des clés/certificats"
+  criticite: "Moyenne"
+  action_recommandee: "Formaliser une politique cryptographique incluant la gestion des clés"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.24"
+
+- id: "A.8.28"
+  domaine: "Technologique"
+  controle: "Codage sécurisé"
+  description: >
+    Des principes de codage sécurisé sont appliqués au développement
+    logiciel, avant et pendant l'écriture du code.
+  preuve_attendue: "Guide de codage sécurisé, résultats de revue de code/SAST"
+  criticite: "Moyenne"
+  action_recommandee: "Adopter un guide de codage sécurisé et l'intégrer au pipeline CI/CD"
+  reference: "ISO/IEC 27001:2022, Annexe A.8.28"

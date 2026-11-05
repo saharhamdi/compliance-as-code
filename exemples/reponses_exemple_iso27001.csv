@@ -1,0 +1,19 @@
+control_id,statut,preuve_fournie,commentaire
+A.5.1,conforme,oui,Politique SSI signée et diffusée en intranet
+A.5.7,non_conforme,non,Aucune veille sur les menaces structurée
+A.5.9,partiel,oui,Inventaire des actifs existant mais propriétaires non désignés partout
+A.5.15,conforme,oui,Matrice des droits d'accès à jour
+A.5.23,non_applicable,non,Aucun service cloud utilisé dans le périmètre audité
+A.5.30,non_conforme,non,Pas de plan de continuité informatique
+A.6.3,partiel,oui,Sensibilisation faite une seule fois à l'embauche
+A.6.5,conforme,oui,Procédure de départ incluant révocation des accès
+A.7.2,conforme,oui,Contrôle d'accès par badge sur les zones sensibles
+A.7.9,non_conforme,non,Pas de charte de télétravail
+A.8.1,partiel,oui,Chiffrement disque déployé mais pas sur tous les postes
+A.8.5,partiel,oui,MFA déployé uniquement sur les comptes à privilèges
+A.8.8,conforme,oui,Scan mensuel et suivi des correctifs
+A.8.9,non_conforme,non,Pas de baseline de configuration documentée
+A.8.12,non_conforme,non,Pas de solution DLP
+A.8.16,partiel,oui,SIEM en place mais règles de détection limitées
+A.8.24,conforme,oui,Politique cryptographique avec rotation des clés
+A.8.28,non_applicable,non,Pas de développement logiciel interne dans le périmètre
