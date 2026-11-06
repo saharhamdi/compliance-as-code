@@ -166,7 +166,7 @@ python tests/test_scoring.py
 Project built by **Sahar Hamdi**, Cybersecurity Engineer / CISO,
 specialized in GRC, compliance auditing (ISO 27001, NIS2), and IAM/PAM.
 
-- LinkedIn: *(link to be added)*
+- LinkedIn: [*(link to be added)*](https://www.linkedin.com/in/sahar-hamdi-989775153/)
 - Other portfolio projects: [Risk Management Lab](#), [Secure IaC Lab](#)
 
 ## License
